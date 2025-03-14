@@ -1,42 +1,47 @@
-﻿
-using Odev0308;
+﻿using Odev;
+using System;
+using System.Collections.Generic;
 
-GenelMudur gm = new GenelMudur();
-Mudur mu = new Mudur();
-Programci pr = new Programci();
-Stajyer s = new Stajyer();
+class Program
+{
+    static void Main()
+    {
+        
+        Console.WriteLine(YasKategori.Hesapla(22));
+        Console.WriteLine(Araba.ArabaDurumu(17));
 
-double toplamMaas = 0.0;
+        Dongu.WhileOrnek();
+        Dongu.DoWhileOrnek();
 
-toplamMaas += gm.MaasinizNedir();
-toplamMaas += mu.MaasinizNedir();
-toplamMaas += pr.MaasinizNedir();
-toplamMaas += s.MaasinizNedir();
+        
+        List<Calisan> calisanListesi = new List<Calisan>
+        {
+            new Calisan { Ad = "Duygu", Soyad = "Murt", Meslek = "Genel Müdür", Maas = 50000, Departman = "Yönetim" },
+            new Calisan { Ad = "Gözde", Soyad = "Altunyurt", Meslek = "Müdür", Maas = 30000, Departman = "Satış" },
+            new Calisan { Ad = "Enis", Soyad = "Gürer", Meslek = "Programcı", Maas = 20000, Departman = "IT" },
+            new Calisan { Ad = "Sıla", Soyad = "Gürdaş", Meslek = "Stajyer", Maas = 5000, Departman = "Pazarlama" }
+        };
 
-Console.WriteLine("Toplam maaş: " + toplamMaas + " TL");
+        double toplamMaas = 0;
+        foreach (var calisan in calisanListesi)
+        {
+            Console.WriteLine($"{calisan.Ad} {calisan.Soyad} - {calisan.Meslek} - {calisan.Maas} TL - {calisan.Departman}");
+            toplamMaas += calisan.Maas;
+        }
 
-BMW bmw = new BMW();
-bmw.marka = "bmw";
-bmw.HizliGit(bmw.marka);
-bmw.Uc(bmw.marka);
-bmw.Yuz(bmw.marka);
+        
+        List<Araba> arabaListesi = new List<Araba>
+        {
+            new Araba { Marka = "BMW", Model = "320i", Tuketim = 7.5 },
+            new Araba { Marka = "Mercedes", Model = "C200", Tuketim = 8.0 },
+            new Araba { Marka = "Toyota", Model = "Corolla", Tuketim = 6.5 },
+            new Araba { Marka = "Honda", Model = "Civic", Tuketim = 6.8 }
+        };
 
-Porsche prs = new Porsche();
-prs.marka = "Porsche";
-prs.Uc(prs.marka);
-
-Mercedes mc = new Mercedes();
-mc.marka = "Mercedes";
-mc.Uc(mc.marka);
-mc.Yuz(mc.marka);
-
-double toplamYakıt = 0.0;
-toplamYakıt += bmw.YakitTüketimi();
-toplamYakıt += mc.YakitTüketimi();
-toplamYakıt += prs.YakitTüketimi();
-
-Console.WriteLine("Harcanan toplam yakıt:" + toplamYakıt);
-
-//ARRAY(DİZİ) NEDİR?
-//Array, aynı türdeki birden fazla veriyi tek bir yapıda saklamak için kullanılan bir veri yapısıdır.
-//Yani, diziler birden fazla değeri bir arada tutmaMıza imkan verir. Her bir değere eleman denir ve bu elemanlar bir indeks kullanılarak erişilebilir.
+       
+        foreach (var araba in arabaListesi)
+        {
+            Console.WriteLine($"{araba.Marka} {araba.Model} - {araba.Tuketim} L/100km");
+        }
+    }
+}
